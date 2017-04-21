@@ -1,0 +1,256 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/JoelCoxOKC/gulp-command"
+
+    >gulp-command (v0.1.2)</a>
+</h1>
+<h4>Use Commander-CLI options in Gulp for passing Command line flags</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-command">module gulp-command</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-command.option">
+            function <span class="apidocSignatureSpan">gulp-command.</span>option
+            <span class="apidocSignatureSpan">(task, flags, description)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">gulp-command.</span>option.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-command.option">module gulp-command.option</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-command.option.option">
+            function <span class="apidocSignatureSpan">gulp-command.</span>option
+            <span class="apidocSignatureSpan">(task, flags, description)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-command.option.prototype">module gulp-command.option.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-command.option.prototype.is">
+            function <span class="apidocSignatureSpan">gulp-command.option.prototype.</span>is
+            <span class="apidocSignatureSpan">(arg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-command.option.prototype.name">
+            function <span class="apidocSignatureSpan">gulp-command.option.prototype.</span>name
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-command" id="apidoc.module.gulp-command">module gulp-command</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-command.option" id="apidoc.element.gulp-command.option">
+        function <span class="apidocSignatureSpan">gulp-command.</span>option
+        <span class="apidocSignatureSpan">(task, flags, description)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Option(task, flags, description) {
+  this.task = task || null;
+  this.flags = flags;
+  this.required = ~flags.indexOf(&#x27;&#x3c;&#x27;);
+  this.optional = ~flags.indexOf(&#x27;[&#x27;);
+  this.bool = !~flags.indexOf(&#x27;-no-&#x27;);
+  flags = flags.split(/[ ,|]+/);
+  if (flags.length &#x3e; 1 &#x26;&#x26; !/^[[&#x3c;]/.test(flags[1])) this.short = flags.shift();
+  this.long = flags.shift();
+  this.description = description || &#x27;&#x27;;
+  this.shortName = this.short.split(&#x27;-&#x27;)[1]
+  this.longName = this.long.split(&#x27;--&#x27;)[1]
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Her is an example of how to use gulp-command
+
+```javascript
+var gulp        = require(&#x27;gulp&#x27;);
+var gulpCommand = require(&#x27;gulp-command&#x27;)(gulp);
+
+gulp
+   .<span class="apidocCodeKeywordSpan">option</span>(&#x27;&#x3c;related-task&#x3e;&#x27;, &#x27;-f, --flag&#x27;, &#x27;Description
+&#x27;, &#x27;callback&#x27;)
+
+```
+
+- Related-Task: optional
+
+- -f, --flag: required (both short and long flag are required comma Separated);
+- description: required
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-command.option" id="apidoc.module.gulp-command.option">module gulp-command.option</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-command.option.option" id="apidoc.element.gulp-command.option.option">
+        function <span class="apidocSignatureSpan">gulp-command.</span>option
+        <span class="apidocSignatureSpan">(task, flags, description)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Option(task, flags, description) {
+  this.task = task || null;
+  this.flags = flags;
+  this.required = ~flags.indexOf(&#x27;&#x3c;&#x27;);
+  this.optional = ~flags.indexOf(&#x27;[&#x27;);
+  this.bool = !~flags.indexOf(&#x27;-no-&#x27;);
+  flags = flags.split(/[ ,|]+/);
+  if (flags.length &#x3e; 1 &#x26;&#x26; !/^[[&#x3c;]/.test(flags[1])) this.short = flags.shift();
+  this.long = flags.shift();
+  this.description = description || &#x27;&#x27;;
+  this.shortName = this.short.split(&#x27;-&#x27;)[1]
+  this.longName = this.long.split(&#x27;--&#x27;)[1]
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Her is an example of how to use gulp-command
+
+```javascript
+var gulp        = require(&#x27;gulp&#x27;);
+var gulpCommand = require(&#x27;gulp-command&#x27;)(gulp);
+
+gulp
+   .<span class="apidocCodeKeywordSpan">option</span>(&#x27;&#x3c;related-task&#x3e;&#x27;, &#x27;-f, --flag&#x27;, &#x27;Description
+&#x27;, &#x27;callback&#x27;)
+
+```
+
+- Related-Task: optional
+
+- -f, --flag: required (both short and long flag are required comma Separated);
+- description: required
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-command.option.prototype" id="apidoc.module.gulp-command.option.prototype">module gulp-command.option.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-command.option.prototype.is" id="apidoc.element.gulp-command.option.prototype.is">
+        function <span class="apidocSignatureSpan">gulp-command.option.prototype.</span>is
+        <span class="apidocSignatureSpan">(arg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">is = function (arg) {
+  return arg == this.short || arg == this.long;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-command.option.prototype.name" id="apidoc.element.gulp-command.option.prototype.name">
+        function <span class="apidocSignatureSpan">gulp-command.option.prototype.</span>name
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">name = function (){
+  return this.long
+    .replace(&#x27;--&#x27;, &#x27;&#x27;)
+    .replace(&#x27;no-&#x27;, &#x27;&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
